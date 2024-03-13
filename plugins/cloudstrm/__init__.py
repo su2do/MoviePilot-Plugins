@@ -464,7 +464,7 @@ class CloudStrm(_PluginBase):
                                         try:
                                                 logger.info(f"正在下载 {source_file}")
                                                 r=requests.get(source_file.replace('/dav','/d'))
-                                                with open (dest_file,''),'wb') as f:
+                                                with open (dest_file,'wb') as f:
                                                         f.write(r.content)
                                                         f.close
                                                 #wget.download(b.replace('/dav','/d'),save_mulu+b.replace(webdav_url,''))
