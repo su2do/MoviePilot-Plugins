@@ -1,8 +1,8 @@
 {
       "CloudStrm": {
-        "name": "云盘Strm生成",
+        "name": "云盘Strm生成-支持webdav",
         "description": "监控文件创建，生成Strm文件。",
-        "version": "3.6",
+        "version": "3.6.1",
         "icon": "https://raw.githubusercontent.com/thsrite/MoviePilot-Plugins/main/icons/create.png",
         "author": "thsrite",
         "level": 1
