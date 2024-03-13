@@ -18,10 +18,12 @@ from app.log import logger
 from app.plugins import _PluginBase
 from app.core.config import settings
 
+#wenjian = list_files(webdav_url1, username, password)
+
 
 class CloudStrm(_PluginBase):
     # 插件名称
-    plugin_name = "云盘Strm生成"
+    plugin_name = "云盘Strm生成（支持webdav）"
     # 插件描述
     plugin_desc = "定时扫描云盘文件，生成Strm文件。"
     # 插件图标
@@ -458,7 +460,7 @@ class CloudStrm(_PluginBase):
                                 p=1
                                 while p<10:
                                         try:
-                                                print('正在下载：'+source_file,''))
+                                                print('正在下载：'source_file,''))
                                                 r=requests.get(source_file.replace('/dav','/d'))
                                                 with open (dest_file,''),'wb') as f:
                                                         f.write(r.content)
