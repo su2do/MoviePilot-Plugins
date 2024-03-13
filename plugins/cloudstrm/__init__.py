@@ -2,6 +2,8 @@ import json
 import os
 import shutil
 import urllib.parse
+import time
+import requests
 from datetime import datetime, timedelta
 from pathlib import Path
 from webdav3.client import Client
@@ -376,11 +378,11 @@ class CloudStrm(_PluginBase):
                         files = client.list()
                 except:
                         q+=1
-                        print('连接失败，1秒后重试...')
+                        logger.info(f"下载失败，1秒后重试...")
                         time.sleep(1)
                 else:
                         if q>1:
-                                print('重连成功...')
+                                logger.info(f"重连成功...")
                         break
 
         for file in files[1:]:
@@ -460,7 +462,7 @@ class CloudStrm(_PluginBase):
                                 p=1
                                 while p<10:
                                         try:
-                                                print('正在下载：'source_file,''))
+                                                logger.info(f"正在下载 {source_file}")
                                                 r=requests.get(source_file.replace('/dav','/d'))
                                                 with open (dest_file,''),'wb') as f:
                                                         f.write(r.content)
@@ -468,11 +470,11 @@ class CloudStrm(_PluginBase):
                                                 #wget.download(b.replace('/dav','/d'),save_mulu+b.replace(webdav_url,''))
                                         except:
                                                 p+=1
-                                                print('下载失败，1秒后重试...')
+                                                logger.info(f"下载失败，1秒后重试...")
                                                 time.sleep(1)
                                         else:
                                                 if p>1:
-                                                        print('重新下载成功！')
+                                                        logger.info(f"重新下载成功")
                                                 break
                                     
 
