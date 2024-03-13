@@ -220,10 +220,10 @@ class CloudStrm(_PluginBase):
 
         # 不是首次索引，则重新扫描、判断是否有新文件
         if not __init_flag:
-            __save_flag = 
+            __save_flag = False
             for source_dir in self._dirconf.keys():
                 logger.info(f"正在处理监控文件 {source_dir}")
-                if self._alist_webdav = False:
+                if not self._alist_webdav:
                     for root, dirs, files in os.walk(source_dir):
                         # 如果遇到名为'extrafanart'的文件夹，则跳过处理该文件夹，继续处理其他文件夹
                         if "extrafanart" in dirs:
