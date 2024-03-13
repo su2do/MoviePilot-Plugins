@@ -21,7 +21,7 @@ from app.core.config import settings
 
 class CloudStrm(_PluginBase):
     # 插件名称
-    plugin_name = "云盘Strm生成（支持webdav）"
+    plugin_name = "云盘Strm生成-支持webdav"
     # 插件描述
     plugin_desc = "定时扫描云盘文件，生成Strm文件。"
     # 插件图标
