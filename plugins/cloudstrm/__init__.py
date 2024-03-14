@@ -454,23 +454,23 @@ class CloudStrm(_PluginBase):
                                 logger.info(f"复制其他文件 {source_file} 到 {dest_file}")
                             else:
                                 if self._copy_files and self._alist_webdav:
-                                p=1
-                                while p<10:
-                                        try:
-                                                logger.info(f"正在下载 {source_file}")
-                                                r=requests.get(source_file.replace('/dav','/d'))
-                                                with open (dest_file,'wb') as f:
-                                                        f.write(r.content)
-                                                        f.close
-                                                #wget.download(b.replace('/dav','/d'),save_mulu+b.replace(webdav_url,''))
-                                        except:
-                                                p+=1
-                                                logger.info(f"下载失败，1秒后重试...")
-                                                time.sleep(1)
-                                        else:
-                                                if p>1:
-                                                        logger.info(f"重新下载成功")
-                                                break
+                                    p=1
+                                    while p<10:
+                                            try:
+                                                    logger.info(f"正在下载 {source_file}")
+                                                    r=requests.get(source_file.replace('/dav','/d'))
+                                                    with open (dest_file,'wb') as f:
+                                                            f.write(r.content)
+                                                            f.close
+                                                    #wget.download(b.replace('/dav','/d'),save_mulu+b.replace(webdav_url,''))
+                                            except:
+                                                    p+=1
+                                                    logger.info(f"下载失败，1秒后重试...")
+                                                    time.sleep(1)
+                                            else:
+                                                    if p>1:
+                                                            logger.info(f"重新下载成功")
+                                                    break
                                     
 
         except Exception as e:
