@@ -221,6 +221,8 @@ class CloudStrm(_PluginBase):
             __save_flag = False
             for source_dir in self._dirconf.keys():
                 logger.info(f"正在处理监控文件 {source_dir}")
+                dav_user = self._dav_user
+                dav_pass = self._dav_pass
                 if not self._alist_webdav:
                     for root, dirs, files in os.walk(source_dir):
                         # 如果遇到名为'extrafanart'的文件夹，则跳过处理该文件夹，继续处理其他文件夹
@@ -252,7 +254,7 @@ class CloudStrm(_PluginBase):
                             else:
                                 logger.debug(f"{source_file} 已在缓存中！跳过处理")
                 else:
-                    files = self._webdav_list_files(source_dir, _dav_user, _dav_pass)
+                    files = self._webdav_list_files(source_dir, dav_user, dav_pass)
                     for source_file in files:
                         # 回收站及隐藏的文件不处理
                         if (source_file.find("/@Recycle") != -1
@@ -293,6 +295,8 @@ class CloudStrm(_PluginBase):
         # init
         for source_dir in self._dirconf.keys():
             logger.info(f"正在处理监控文件 {source_dir}")
+            dav_user = self._dav_user
+            dav_pass = self._dav_pass
             if not self._alist_webdav:
                 for root, dirs, files in os.walk(source_dir):
                     # 如果遇到名为'extrafanart'的文件夹，则跳过处理该文件夹，继续处理其他文件夹
@@ -320,7 +324,7 @@ class CloudStrm(_PluginBase):
                         # 扫描云盘文件，判断是否有对应strm
                         self.__strm(source_file)
             else:
-                files = self._webdav_list_files(source_dir, _dav_user, _dav_pass)
+                files = self._webdav_list_files(source_dir, dav_user, dav_pass)
                 for source_file in files:
                     # 回收站及隐藏的文件不处理
                     if (source_file.find("/@Recycle") != -1
