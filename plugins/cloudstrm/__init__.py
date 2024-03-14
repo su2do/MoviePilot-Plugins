@@ -252,7 +252,7 @@ class CloudStrm(_PluginBase):
                             else:
                                 logger.debug(f"{source_file} 已在缓存中！跳过处理")
                 else:
-                    files = self._webdav_list_files(source_dir, self._dav_user, self._dav_pass)
+                    files = self._webdav_list_files(source_dir, _dav_user, _dav_pass)
                     for source_file in files:
                         # 回收站及隐藏的文件不处理
                         if (source_file.find("/@Recycle") != -1
@@ -320,7 +320,7 @@ class CloudStrm(_PluginBase):
                         # 扫描云盘文件，判断是否有对应strm
                         self.__strm(source_file)
             else:
-                files = self._webdav_list_files(source_dir, self._dav_user, self._dav_pass)
+                files = self._webdav_list_files(source_dir, _dav_user, _dav_pass)
                 for source_file in files:
                     # 回收站及隐藏的文件不处理
                     if (source_file.find("/@Recycle") != -1
