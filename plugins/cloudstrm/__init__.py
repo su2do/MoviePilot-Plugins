@@ -294,37 +294,17 @@ class CloudStrm(_PluginBase):
         初始化云盘文件json
         """
         # init
-            for source_dir in self._dirconf.keys():
-                logger.info(f"正在处理监控文件 {source_dir}")
-                if not self._alist_webdav:
-                    for root, dirs, files in os.walk(source_dir):
-                        # 如果遇到名为'extrafanart'的文件夹，则跳过处理该文件夹，继续处理其他文件夹
-                        if "extrafanart" in dirs:
-                            dirs.remove("extrafanart")
+        for source_dir in self._dirconf.keys():
+            logger.info(f"正在处理监控文件 {source_dir}")
+            if not self._alist_webdav:
+                for root, dirs, files in os.walk(source_dir):
+                    # 如果遇到名为'extrafanart'的文件夹，则跳过处理该文件夹，继续处理其他文件夹
+                    if "extrafanart" in dirs:
+                        dirs.remove("extrafanart")
 
-                        # 处理文件
-                        for file in files:
-                            source_file = os.path.join(root, file)
-                            # 回收站及隐藏的文件不处理
-                            if (source_file.find("/@Recycle") != -1
-                                    or source_file.find("/#recycle") != -1
-                                    or source_file.find("/.") != -1
-                                    or source_file.find("/@eaDir") != -1):
-                                logger.info(f"{source_file} 是回收站或隐藏的文件，跳过处理")
-                                continue
-
-                            # 不复制非媒体文件时直接过滤掉非媒体文件
-                            if not self._copy_files and not file.lower().endswith(self._video_formats):
-                                continue
-
-                            logger.info(f"扫描到新文件 {source_file}，正在开始处理")
-                            # 云盘文件json新增
-                            self.__cloud_files.append(source_file)
-                            # 扫描云盘文件，判断是否有对应strm
-                            self.__strm(source_file)
-                else:
-                    files = _webdav_list_files(source_dir, self._dav_user, self._dav_pass)
-                    for source_file in files:
+                    # 处理文件
+                    for file in files:
+                        source_file = os.path.join(root, file)
                         # 回收站及隐藏的文件不处理
                         if (source_file.find("/@Recycle") != -1
                                 or source_file.find("/#recycle") != -1
@@ -332,18 +312,38 @@ class CloudStrm(_PluginBase):
                                 or source_file.find("/@eaDir") != -1):
                             logger.info(f"{source_file} 是回收站或隐藏的文件，跳过处理")
                             continue
+
                         # 不复制非媒体文件时直接过滤掉非媒体文件
                         if not self._copy_files and not file.lower().endswith(self._video_formats):
                             continue
-                        if source_file not in self.__cloud_files:
-                            logger.info(f"扫描到新文件 {source_file}，正在开始处理")
-                            # 云盘文件json新增
-                            self.__cloud_files.append(source_file)
-                            # 扫描云盘文件，判断是否有对应strm
-                            self.__strm(source_file)
-                            __save_flag = True
-                        else:
-                            logger.debug(f"{source_file} 已在缓存中！跳过处理")
+
+                        logger.info(f"扫描到新文件 {source_file}，正在开始处理")
+                        # 云盘文件json新增
+                        self.__cloud_files.append(source_file)
+                        # 扫描云盘文件，判断是否有对应strm
+                        self.__strm(source_file)
+            else:
+                files = _webdav_list_files(source_dir, self._dav_user, self._dav_pass)
+                for source_file in files:
+                    # 回收站及隐藏的文件不处理
+                    if (source_file.find("/@Recycle") != -1
+                            or source_file.find("/#recycle") != -1
+                            or source_file.find("/.") != -1
+                            or source_file.find("/@eaDir") != -1):
+                        logger.info(f"{source_file} 是回收站或隐藏的文件，跳过处理")
+                        continue
+                    # 不复制非媒体文件时直接过滤掉非媒体文件
+                    if not self._copy_files and not file.lower().endswith(self._video_formats):
+                        continue
+                    if source_file not in self.__cloud_files:
+                        logger.info(f"扫描到新文件 {source_file}，正在开始处理")
+                        # 云盘文件json新增
+                        self.__cloud_files.append(source_file)
+                        # 扫描云盘文件，判断是否有对应strm
+                        self.__strm(source_file)
+                        __save_flag = True
+                    else:
+                        logger.debug(f"{source_file} 已在缓存中！跳过处理")
 
 
 
