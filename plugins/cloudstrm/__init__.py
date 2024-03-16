@@ -547,7 +547,10 @@ class CloudStrm(_PluginBase):
             "rebuild": self._rebuild,
             "copy_files": self._copy_files,
             "cron": self._cron,
-            "monitor_confs": self._monitor_confs
+            "monitor_confs": self._monitor_confs,
+            "alist_webdav": self._alist_webdav,
+            "dav_user": _dav_user,
+            "dav_pass": _dav_pass
         })
 
     def get_state(self) -> bool:
@@ -722,7 +725,7 @@ class CloudStrm(_PluginBase):
                                 'component': 'VCol',
                                 'props': {
                                     'cols': 12,
-                                    'md': 6
+                                    'md': 4
                                 },
                                 'content': [
                                     {
@@ -743,7 +746,7 @@ class CloudStrm(_PluginBase):
                                 'component': 'VCol',
                                 'props': {
                                     'cols': 12,
-                                    'md': 6
+                                    'md': 4
                                 },
                                 'content': [
                                     {
