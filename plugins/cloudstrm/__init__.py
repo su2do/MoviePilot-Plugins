@@ -263,7 +263,7 @@ class CloudStrm(_PluginBase):
                             logger.info(f"{source_file} 是回收站或隐藏的文件，跳过处理")
                             continu
                         # 不复制非媒体文件时直接过滤掉非媒体文件
-                        if not self._copy_files and not file.lower().endswith(self._video_formats):
+                        if not self._copy_files and not source_file.lower().endswith(self._video_formats):
                             continu
                         if source_file not in self.__cloud_files:
                             logger.info(f"扫描到新文件 {source_file}，正在开始处理")
@@ -332,7 +332,7 @@ class CloudStrm(_PluginBase):
                         logger.info(f"{source_file} 是回收站或隐藏的文件，跳过处理")
                         continue
                     # 不复制非媒体文件时直接过滤掉非媒体文件
-                    if not self._copy_files and not file.lower().endswith(self._video_formats):
+                    if not self._copy_files and not source_file.lower().endswith(self._video_formats):
                         continue
                     if source_file not in self.__cloud_files:
                         logger.info(f"扫描到新文件 {source_file}，正在开始处理")
