@@ -383,7 +383,7 @@ class CloudStrm(_PluginBase):
                 url=source_dir+file
                 #print(url)
                 if file[-1]=='/':
-                        yield from self._webdav_list_files( source_dir, dav_user, dav_pass)
+                        yield from self._webdav_list_files(url, dav_user, dav_pass)
                         #path.append(file)
                 else:
                         yield url
