@@ -254,7 +254,7 @@ class CloudStrm(_PluginBase):
                             else:
                                 logger.debug(f"{source_file} 已在缓存中！跳过处理")
                 else:
-                    files = self._webdav_list_files(source_dir, dav_user, dav_pass)
+                    files = self._webdav_list_files(source_dir=source_dir, dav_user=dav_user, dav_pass=dav_pass)
                     for source_file in files:
                         # 回收站及隐藏的文件不处理
                         if (source_file.find("/@Recycle") != -1
@@ -324,7 +324,7 @@ class CloudStrm(_PluginBase):
                         # 扫描云盘文件，判断是否有对应strm
                         self.__strm(source_file)
             else:
-                files = self._webdav_list_files(source_dir, dav_user, dav_pass)
+                files = self._webdav_list_files(source_dir=source_dir, dav_user=dav_user, dav_pass=dav_pass)
                 for source_file in files:
                     # 回收站及隐藏的文件不处理
                     if (source_file.find("/@Recycle") != -1
@@ -354,12 +354,12 @@ class CloudStrm(_PluginBase):
         else:
             logger.warning(f"未获取到文件列表")
 
-    def _webdav_list_files(webdav_url, username, password):
+    def _webdav_list_files(source_dir, dav_user, dav_pass):
         # 创建WebDAV客户端
         options = {
-                'webdav_hostname': webdav_url,
-                'webdav_login': username,
-                'webdav_password': password
+                'webdav_hostname': source_dir,
+                'webdav_login': dav_user,
+                'webdav_password': dav_pass
         }
 
 
@@ -382,7 +382,7 @@ class CloudStrm(_PluginBase):
                         break
 
         for file in files[1:]:
-                url=webdav_url+file
+                url=source_dir+file
                 #print(url)
                 if file[-1]=='/':
                         yield from list_files(url, username, password)
