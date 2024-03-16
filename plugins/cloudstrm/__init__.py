@@ -549,8 +549,8 @@ class CloudStrm(_PluginBase):
             "cron": self._cron,
             "monitor_confs": self._monitor_confs,
             "alist_webdav": self._alist_webdav,
-            "dav_user": _dav_user,
-            "dav_pass": _dav_pass
+            "dav_user": self._dav_user,
+            "dav_pass": self._dav_pass
         })
 
     def get_state(self) -> bool:
