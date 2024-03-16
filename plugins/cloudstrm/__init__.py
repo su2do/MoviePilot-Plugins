@@ -261,10 +261,10 @@ class CloudStrm(_PluginBase):
                                 or source_file.find("/.") != -1
                                 or source_file.find("/@eaDir") != -1):
                             logger.info(f"{source_file} 是回收站或隐藏的文件，跳过处理")
-                            continu
+                            continue
                         # 不复制非媒体文件时直接过滤掉非媒体文件
                         if not self._copy_files and not source_file.lower().endswith(self._video_formats):
-                            continu
+                            continue
                         if source_file not in self.__cloud_files:
                             logger.info(f"扫描到新文件 {source_file}，正在开始处理")
                             # 云盘文件json新增
@@ -735,11 +735,6 @@ class CloudStrm(_PluginBase):
                                     }
                                 ]
                             },
-                        ]
-                    },
-                     {
-                        'component': 'VRow',
-                        'content': [
                             {
                                 'component': 'VCol',
                                 'props': {
@@ -755,7 +750,7 @@ class CloudStrm(_PluginBase):
                                         }
                                     }
                                 ]
-                            },
+                            }
                         ]
                     },
                     {
