@@ -21,13 +21,13 @@ from app.plugins import _PluginBase
 from app.core.config import settings
 
 
-class CloudStrm(_PluginBase):
+class CloudStrmwebdav(_PluginBase):
     # 插件名称
     plugin_name = "云盘Strm生成（webdav版）"
     # 插件描述
     plugin_desc = "定时扫描云盘文件，生成Strm文件。"
     # 插件图标
-    plugin_icon = "https://raw.githubusercontent.com/thsrite/MoviePilot-Plugins/main/icons/create.png"
+    plugin_icon = "https://raw.githubusercontent.com/su2do/MoviePilot-Plugins/main/icons/create.png"
     # 插件版本
     plugin_version = "3.6.1"
     # 插件作者
@@ -583,8 +583,8 @@ class CloudStrm(_PluginBase):
         """
         if self._enabled and self._cron:
             return [{
-                "id": "CloudStrm",
-                "name": "云盘strm文件生成服务",
+                "id": "CloudStrmwebdav",
+                "name": "云盘strm文件生成服务webdav版",
                 "trigger": CronTrigger.from_crontab(self._cron),
                 "func": self.scan,
                 "kwargs": {}
