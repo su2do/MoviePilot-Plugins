@@ -1,4 +1,4 @@
-# 云盘strm生成_webdav
+# 云盘strm生成（webdav版）
 
 ### 更新记录
 
