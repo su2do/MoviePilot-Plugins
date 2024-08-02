@@ -4,7 +4,7 @@
         "description": "监控文件创建，生成Strm文件。",
         "version": "3.6.1",
         "icon": "https://raw.githubusercontent.com/thsrite/MoviePilot-Plugins/main/icons/create.png",
-        "author": "thsrite",
+        "author": "su2do",
         "level": 1
       },
       "StrmConvert": {
